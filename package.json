@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "node node_modules/jasmine-node/bin/jasmine-node spec/*.js"
+    "test": "node node_modules/jasmine/bin/jasmine spec/*.js"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
