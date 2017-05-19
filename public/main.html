@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="menu/css/style.css">\
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" , src="jquery/lib/jquery.js"></script>
+    <script type="text/javascript" , src="jquery/lib/jquery.ajaxQueue.js"></script>
+    <script type="text/javascript" , src="jquery/lib/jquery.bgiframe.min.js"></script>
+    <script type="text/javascript" , src="jquery/jquery.autocomplete.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery/jquery.autocomplete.css" />
+    <title>PassFinder</title>
+    <script tpye="text/javascript">
+        function setLocalStorage(){
+            localStorage.setItem("inair", in_air.value);
+            localStorage.setItem("outair", out_air.value);
+            //var in_air = document.querySelector('#in_air');
+           // window.localStorage['inair'] = in_air.value;
+           // var out_air = document.querySelector('#out_air');
+           // window.localStorage['outair'] = out_air.value;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                    <a class="navbar-brand" style="font-size : 30px" href="main.html">Pass Finder<span ></span></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-right">
+                        <li class="pull-right dropdown">
+                            <a href="#menu-toggle" id="menu-toggle" role="button" aria-expanded="true"><i class="material-icons" style="color : gray ;font-size : 40px; ">view_headline</i></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li style="font-size : 18px"><a href="main.html">출/도착지 선택</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">여행 기간 선택</a></li>
+                <li id="accordion">
+                    <li style="font-size : 18px">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                           패스추천<i class="material-icons">arrow_drop_down</i></a>
+                    </li>
+                    <div id="collapse1" class="collapse">
+                        <div style="font-size : 14px; color:#999999" class="panel-body" href="#SubPass1" data-toggle="collapse">&nbsp;&nbsp;&nbsp;추천패스 1 <i class="material-icons">arrow_drop_down</i>
+                            <div class="collapse" id="SubPass1">
+                                <div class="panel-body" style="font-size : 12px; color:#999999">
+                                    &nbsp;&nbsp;패스이름: ???
+                                    <br></br>
+                                    &nbsp;&nbsp;패스 정보 : ???
+                                </div>
+                            </div>
+                        </div>
+                        <div style="font-size : 14px; color:#999999" class="panel-body" href="#SubPass2" data-toggle="collapse">&nbsp;&nbsp;&nbsp;추천패스 2 <i class="material-icons">arrow_drop_down</i>
+                            <div class="collapse" id="SubPass2">
+                                <div class="panel-body" style="font-size : 12px">
+                                    &nbsp;&nbsp;패스이름: ???
+                                    <br></br>
+                                    &nbsp;&nbsp;패스 정보 : ???
+                                </div>
+                            </div>
+                        </div>
+                        <div style="font-size : 14px; color:#999999" class="panel-body" href="#SubPass3" data-toggle="collapse">&nbsp;&nbsp;&nbsp;추천패스 3 <i class="material-icons">arrow_drop_down</i>
+                            <div class="collapse" id="SubPass3">
+                                <div class="panel-body" style="font-size : 12px">
+                                    &nbsp;&nbsp;패스이름: ???
+                                    <br></br>
+                                    &nbsp;&nbsp;패스 정보 : ???
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="font-size : 18px" class="disabled"><a href="#">추천 코스</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">패스 검색 결과</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">여행 계획 공유</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1> 입/출국 공항 선택</h1>
+            <hr></hr>
+            <p>입국</p>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form name="form1" method="post" action="result.php">
+                        <input id="in_air" type="text" id="searchbox">
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <br></br>
+            <p>출국</p>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form name="form1" method="post" action="result.php">
+                        <input id="out_air" type="text" id="searchbox">
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+                <hr></hr>
+
+            </div>
+            <div class="row">
+                <hr></hr>
+                <div class="col-md-4"></div>
+
+                <div class="col-md-4">
+                    <p><a href="index.html" class="btn btn-lg btn-primary" onclick="setLocalStorage()"> 다음 </a></p>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+          
+
+        </div>
+    </div>
+
+</body>
+<script>
+    var availableTags = [
+        '시즈오카 공항'
+    ]
+
+</script>
+<script>
+    $(document).ready(function() {
+        $("#searchbox").autocompete(availableTags, {
+            matchContains: true,
+            selectFirst: false
+        });
+    });
+
+</script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+</script>
+
+<script src="js/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--script src ="js/jquery-3.2.1.js"></1script-->
+<script src="js/bootstrap.js"></script>
+
+</html>

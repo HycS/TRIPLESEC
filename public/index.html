@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="menu/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+    <title>PassFinder</title>
+    <script tpye="text/javascript">
+    //   function setStorage() {
+         //  localStorage.setItem("datetext", root.value);
+          ///  
+      //  }
+
+      //  function getStorage() {
+        //    var date_text = document.querySelector('#date_text1');
+      //      date_text.value = window.localStorage['datetext'];
+       // }
+
+       //function getLocalStorage() {
+           // var in_air = document.querySelector('#in_airtext');
+           // in_air.value = window.localStorage['inair'];
+           // var out_air = document.querySelector('#out_airtext');
+           // out_air.value = window.localStorage['outair'];
+      //  }
+
+    </script>
+</head>
+
+<body >
+    <div id="wrapper">
+        <!-- navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                    <a class="navbar-brand" style="font-size : 30px" href="main.html">Pass Finder<span ></span></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-right">
+                        <li class="pull-right dropdown">
+                            <a href="#menu-toggle" id="menu-toggle" role="button" aria-expanded="true"><i class="material-icons" style="color : gray ;font-size : 40px; ">view_headline</i></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li style="font-size : 18px"><a href="main.html">출/도착지 선택</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">여행 기간 선택</a></li>
+                <li id="accordion">
+                    <li style="font-size : 18px">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                           패스추천<i class="material-icons">arrow_drop_down</i></a>
+                    </li>
+                    <div id="collapse1" class="collapse">
+                        <div style="font-size : 14px; color:#999999" class="panel-body" href="#SubPass1" data-toggle="collapse">&nbsp;&nbsp;&nbsp;추천패스 1 <i class="material-icons">arrow_drop_down</i>
+                            <div class="collapse" id="SubPass1">
+                                <div class="panel-body" style="font-size : 12px; color:#999999">
+                                    &nbsp;&nbsp;패스이름: ???
+                                    <br></br>
+                                    &nbsp;&nbsp;패스 정보 : ???
+                                </div>
+                            </div>
+                        </div>
+                        <div style="font-size : 14px; color:#999999" class="panel-body" href="#SubPass2" data-toggle="collapse">&nbsp;&nbsp;&nbsp;추천패스 2 <i class="material-icons">arrow_drop_down</i>
+                            <div class="collapse" id="SubPass2">
+                                <div class="panel-body" style="font-size : 12px">
+                                    &nbsp;&nbsp;패스이름: ???
+                                    <br></br>
+                                    &nbsp;&nbsp;패스 정보 : ???
+                                </div>
+                            </div>
+                        </div>
+                        <div style="font-size : 14px; color:#999999" class="panel-body" href="#SubPass3" data-toggle="collapse">&nbsp;&nbsp;&nbsp;추천패스 3 <i class="material-icons">arrow_drop_down</i>
+                            <div class="collapse" id="SubPass3">
+                                <div class="panel-body" style="font-size : 12px">
+                                    &nbsp;&nbsp;패스이름: ???
+                                    <br></br>
+                                    &nbsp;&nbsp;패스 정보 : ???
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="font-size : 18px" class="disabled"><a href="#">추천 코스</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">패스 검색 결과</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">여행 계획 공유</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <div class="container">
+        <div class="jumbotron text-center">
+            <br></br>
+            <h1>여행 계획 입력</h1>
+
+            <div id='root'></div>
+            <div class="row">
+                <hr></hr>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <p><a href="main.html" class="btn btn-lg btn-primary">이전</a></p>
+                </div>
+                <div class="col-md-3">
+
+                    <p><a href="#" class="btn btn-lg btn-primary" onclick="setStorage()"> 다음 </a></p>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="bundle.js"></script>
+
+</body>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+</script>
+<script src="js/jquery.js"></script>
+<!--script src ="js/jquery-3.2.1.js"></1script-->
+<script src="js/bootstrap.js"></script>
+
+</html>
