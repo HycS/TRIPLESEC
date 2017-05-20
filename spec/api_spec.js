@@ -48,7 +48,7 @@ describe('api.js', function() {
                 done();
             });
         });
-
+/*
         describe('코스 날짜 범위 검사 여부 체크', function() {
             let function2;
             let result2 = 0;
@@ -81,6 +81,7 @@ describe('api.js', function() {
                 done();
             });
         });
+*/
     //describe 코스 추가 기능 END
     });
 
