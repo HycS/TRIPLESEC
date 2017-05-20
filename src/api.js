@@ -18,11 +18,11 @@ var mysql = require('mysql');
 var options = require('./options');
 
 var connectionPool = mysql.createPool({
-  connectionLimit : options.dbConfig.connectionLimit,
-  host            : options.dbConfig.host,
-  user            : options.dbConfig.user,
-  password        : options.dbConfig.password,
-  database        : options.dbConfig.database
+  connectionLimit : process.env.DB_CONNECTION_LIMIT || options.dbConfig.connectionLimit,
+  host            : process.env.DB_HOST || options.dbConfig.host,
+  user            : process.env.DB_USER || options.dbConfig.user,
+  password        : process.env.DB_PASSWORD || options.dbConfig.password,
+  database        : process.env.DB_DATABASE || options.dbConfig.database
 });
 
 function addCourseSet(courseName, startDate, endDate, courseType, callback) {
