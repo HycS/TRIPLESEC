@@ -55,8 +55,16 @@ function addCourseSet(courseName, startDate, endDate, courseType, callback) {
 }
 
 function getRecommendKeyword(keyword, placeType, callback) {
-  let query = 'select p.id_place, t.tx_translation as place_name from place p inner join translation t on t.id_i18n = p.i18n_place_name inner join locale l on l.id_locale = t.id_locale where t.tx_translation like ? limit 3';
-  let value = ['%'+keyword+'%'];
+  let query;
+  let value;
+  if (placeType == null) {
+      query = 'select p.id_place, t.tx_translation as place_name from place p inner join translation t on t.id_i18n = p.i18n_place_name inner join locale l on l.id_locale = t.id_locale where t.tx_translation like ? limit 3';
+      value = ['%'+keyword+'%'];
+  }
+  else {
+    query = 'select p.id_place, t.tx_translation as place_name from place p inner join translation t on t.id_i18n = p.i18n_place_name inner join locale l on l.id_locale = t.id_locale where t.tx_translation like ? and place_type=? limit 3';
+    value = ['%'+keyword+'%', placeType];
+  }
 
   query = mysql.format(query, value);
 
