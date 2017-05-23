@@ -14,7 +14,7 @@ router.use(bodyparser.urlencoded({extended: true}));
 
 router.get('/', function (req, res) {
   res.json({ message: "Welcome to TRIPLE SEC API Service!" });
-})
+});
 
 app.listen(port, function () {
   console.log('Example app listening on port', port)
@@ -32,6 +32,7 @@ router.route('/course')
 
         api.addCourseSet(req.body.courseName, parseInt(req.body.startDate, 10), parseInt(req.body.endDate, 10), req.body.courseType, function(err, id) {
             if (err) {
+                res.status(400).json({ message: "FAIL" });
             }
             else {
                 res.status(200).json({ "courseID": id, message: "SUCCESS" });
@@ -49,4 +50,23 @@ router.route('/course/:courseID')
         if (!id) {
             return res.status(400).json({error: 'Incorrect ID'});
         }
+    });
+
+router.route('/keyword/:keyword')
+
+    .get(function (req, res) {
+        const keyword = req.params.keyword;
+        const place_type = req.query.category;
+        api.getRecommendKeyword(keyword, place_type, function (err, result) {
+            if (err) {
+                res.status(400).json({ message: "FAIL" });
+            }
+            else {
+                let resultJSON = [];
+                for (let i = 0;i < result.length; i++) {
+                    resultJSON.push({id_place: result[i].id_place, place_name: result[i].place_name});
+                }
+                res.status(200).json(resultJSON);
+            }
+        });
     });

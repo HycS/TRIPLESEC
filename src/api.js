@@ -5,7 +5,8 @@
     module.exports = {
       mysql: mysql,
       connectionPool: connectionPool,
-      addCourseSet: addCourseSet
+      addCourseSet: addCourseSet,
+      getRecommendKeyword: getRecommendKeyword
     };
   }
 }();
@@ -50,5 +51,26 @@ function addCourseSet(courseName, startDate, endDate, courseType, callback) {
       }
     });
     connection.release();
+  });
+}
+
+function getRecommendKeyword(keyword, placeType, callback) {
+  let query = 'select p.id_place, t.tx_translation as place_name from place p inner join translation t on t.id_i18n = p.i18n_place_name inner join locale l on l.id_locale = t.id_locale where t.tx_translation like ? limit 3';
+  let value = ['%'+keyword+'%'];
+
+  query = mysql.format(query, value);
+
+  console.log(query);
+
+  connectionPool.getConnection(function(error, connection) {
+    connection.query(query, function (error, result) {
+      if (error) {
+        callback(error, false);
+      }
+      else {
+        callback(null, result);
+      }
+      connection.release();
+    });
   });
 }
