@@ -6,7 +6,8 @@
       mysql: mysql,
       connectionPool: connectionPool,
       addCourseSet: addCourseSet,
-      getRecommendKeyword: getRecommendKeyword
+      getRecommendKeyword: getRecommendKeyword,
+      getPlacesList: getPlacesList
     };
   }
 }();
@@ -72,6 +73,23 @@ function getRecommendKeyword(keyword, placeType, callback) {
 
   connectionPool.getConnection(function(error, connection) {
     connection.query(query, function (error, result) {
+      if (error) {
+        callback(error, false);
+      }
+      else {
+        callback(null, result);
+      }
+      connection.release();
+    });
+  });
+}
+
+function getPlacesList(callback) {
+  let query = "select p.id_place, l.id_locale, t1.tx_translation as place_name, p.place_type, p.phone, t2.tx_translation as place_address, t3.tx_translation as place_description, p.place_url, p.latitude, p.longitude from place p inner join translation t1 on t1.id_i18n = p.i18n_place_name inner join translation t2 on t2.id_i18n = p.i18n_place_address inner join translation t3 on t3.id_i18n = p.i18n_place_description inner join locale l on l.id_locale = t1.id_locale and l.id_locale = t2.id_locale and l.id_locale = t3.id_locale";
+
+  connectionPool.getConnection(function(error, connection) {
+    connection.query(query, function (error, result) {
+      console.log(query);
       if (error) {
         callback(error, false);
       }

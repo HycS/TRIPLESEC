@@ -70,3 +70,37 @@ router.route('/keyword/:keyword')
             }
         });
     });
+
+router.route('/placesList')
+
+    .get(function (req, res) {
+        api.getPlacesList(function (err, result) {
+            if (err) {
+                res.status(400).json({ message: "FAIL" });
+            }
+            else {
+                let resultJSON = [];
+                let id_place = 0;
+                let place_count = 0;
+
+                for (let i = 0;i < result.length; i++) {
+                    if (id_place != result[i].id_place) {
+                        id_place = result[i].id_place;
+
+                        resultJSON.push({ id_place: result[i].id_place, place_name: { }, place_type: result[i].place_type, phone: result[i].phone, place_address: {}, place_description: {}, place_url: result[i].place_url, latitude: result[i].latitude, longitude: result[i].longitude });
+                        resultJSON[place_count].place_name[result[i].id_locale] = result[i].place_name;
+                        resultJSON[place_count].place_address[result[i].id_locale] = result[i].place_address;
+                        resultJSON[place_count].place_description[result[i].id_locale] = result[i].place_description;
+
+                        place_count += 1;
+                    }
+                    else {
+                        resultJSON[place_count-1].place_name[result[i].id_locale] = result[i].place_name;
+                        resultJSON[place_count-1].place_address[result[i].id_locale] = result[i].place_address;
+                        resultJSON[place_count-1].place_description[result[i].id_locale] = result[i].place_description;
+                    }
+                }
+                res.status(200).json(resultJSON);
+            }
+        });
+    });
