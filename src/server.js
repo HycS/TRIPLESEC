@@ -29,13 +29,26 @@ router.route('/course')
         console.log("data received");
         console.log(req.body);
         console.log(req.body.courseName);
+        let isSuccess = true;
 
         api.addCourseSet(req.body.courseName, parseInt(req.body.startDate, 10), parseInt(req.body.endDate, 10), req.body.courseType, function(err, id) {
             if (err) {
-                res.status(400).json({ message: "FAIL" });
+                isSuccess = false;
             }
             else {
-                res.status(200).json({ "courseID": id, message: "SUCCESS" });
+                for(let i = 0; i < req.body.courseUnit.length; i++) {
+                    api.addCourseUnit(id, req.body.courseUnit[i].unitIndex, req.body.courseUnit[i].placeID, req.body.courseUnit[i].unitDate, function(err) {
+                        if (err) {
+                            isSuccess = false;
+                        }
+                    });
+                }
+                if(isSuccess == true) {
+                    res.status(200).json({ "courseID": id, message: "SUCCESS" });
+                }
+                else {
+                    res.status(400).json({ message: "FAIL" });
+                }
             }
         });
 

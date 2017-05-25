@@ -6,6 +6,7 @@
       mysql: mysql,
       connectionPool: connectionPool,
       addCourseSet: addCourseSet,
+      addCourseUnit: addCourseUnit,
       getRecommendKeyword: getRecommendKeyword,
       getPlacesList: getPlacesList
     };
@@ -49,6 +50,26 @@ function addCourseSet(courseName, startDate, endDate, courseType, callback) {
             callback(null, result[0].id_course);
           }
         });
+      }
+    });
+    connection.release();
+  });
+}
+
+function addCourseUnit(courseID, unitIndex, placeID, unitDate, callback) {
+    let query = 'INSERT INTO course_unit(id_course, id_place, unit_index, unit_date) VALUES (?, ?, ?, ?)';
+  let value = [courseID, placeID, unitIndex, unitDate];
+
+  query = mysql.format(query, value);
+  console.log(query);
+
+  connectionPool.getConnection(function(error, connection) {
+    connection.query(query, function (error, result) {
+      if (error) {
+        callback(error);
+      }
+      else {
+        callback(null);
       }
     });
     connection.release();
