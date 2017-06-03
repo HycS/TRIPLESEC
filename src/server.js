@@ -3,7 +3,8 @@ const bodyparser = require('body-parser');
 const api = require('../src/api.js');
 
 var app = express();
-var viewrouter = require('./viewrouter/main')(app);
+var viewrouter = require('../viewrouter/main')(app);
+
 let port = process.env.PORT || 3000;
 let router = express.Router();
 
