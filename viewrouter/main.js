@@ -6,7 +6,7 @@ module.exports = function(app)
      app.get('/test.html',function(req,res){
         res.render('test.html');
     });
-    app.get('/map',function(req,res){
+    app.get('/map.html',function(req,res){
         res.render('map.html');
     });
 }
