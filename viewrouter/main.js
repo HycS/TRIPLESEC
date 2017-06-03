@@ -1,7 +1,7 @@
 module.exports = function(app)
 {
      app.get('/',function(req,res){
-        res.render('main.html')
+        res.render('main.html');
      });
      app.get('/calendar.html',function(req,res){
         res.render('calendar.html');
