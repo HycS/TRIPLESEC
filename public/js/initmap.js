@@ -526,7 +526,10 @@ function postData() {
         var courseInfo = new Object();
         courseInfo.unitIndex = parseInt(labelNumber[i]);
         courseInfo.placeID = parseInt(markers[course[i]].PlaceID);
-        courseInfo.unitDate = parseInt(markers[course[i]].date);
+        var tmp = markers[course[i]].date;
+        var string = tmp.split('-');
+        tmp = string[0] + string[1]+ string[2];
+        courseInfo.unitDate = parseInt(tmp);
         courseArray.push(courseInfo);
 
     }
