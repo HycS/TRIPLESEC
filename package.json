@@ -1,42 +1,44 @@
 {
-    "name": "TRIPLESEC",
-    "version": "1.0.0",
-    "description": "Team TRIPLESEC Capstone project",
-    "engines": {
-        "node": "6.10.2"
-    },
-    "main": "server.js",
-    "scripts": {
-        "start": "node src/server.js",
-        "test": "node node_modules/jasmine/bin/jasmine spec/*.js"
-    },
-    "dependencies": {
-        "bootstrap": "^3.3.7",
-        "express": "^4.15.2",
-        "ejs": "~2.4.1",
-        "react": "^15.5.4",
-        "react-dom": "^15.5.4",
-        "body-parser": "^1.17.2",
-        "mysql": "^2.13.0",
-        "promise-mysql": "^3.0.1",
-        "shortid": "^2.2.8"
-    },
-    "devDependencies": {
-        "jasmine": "^2.6.0",
-        "jasmine-core": "^2.6.1",
-        "karma": "^1.6.0",
-        "karma-chrome-launcher": "^2.1.1",
-        "karma-jasmine": "^1.1.0",
-        "supertest": "^3.0.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/HycS/TRIPLESEC"
-    },
-    "keywords": [
+  "name": "TRIPLESEC",
+  "version": "1.0.0",
+  "description": "Team TRIPLESEC Capstone project",
+  "engines": {
+    "node": "6.10.2"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node node_modules/jasmine/bin/jasmine spec/*.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
+    "debug": "^2.6.8",
+    "ejs": "^2.4.2",
+    "express": "^4.15.2",
+    "mysql": "^2.13.0",
+    "promise-mysql": "^3.0.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "shortid": "^2.2.8"
+  },
+  "devDependencies": {
+    "debug": "^2.6.8",
+    "jasmine": "^2.6.0",
+    "jasmine-core": "^2.6.1",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0",
+    "supertest": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HycS/TRIPLESEC"
+  },
+  "keywords": [
     "TRIPLESEC",
     "node",
     "express"
   ],
-    "author": "TRIPLESEC"
+  "author": "TRIPLESEC"
 }
