@@ -1,6 +1,6 @@
 var express = require('express');
 const bodyparser = require('body-parser');
-var viewrouter = require('../viewrouter/main')(app);
+var viewrouter = require('./viewrouter/main')(app);
 var app = express();
 let port = process.env.PORT || 3000;
 
