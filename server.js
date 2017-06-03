@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyparser = require('body-parser');
-const api = require('../src/api.js');
+const api = require('./src/api.js');
 var app = express();
 var viewrouter = require('./viewrouter/main')(app);
 
