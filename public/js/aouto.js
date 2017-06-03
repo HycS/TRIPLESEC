@@ -10,7 +10,6 @@ function sendFunc() {
         alert("입/출국 공항을 입력 하세요");
         return;
     }
-    alert(inair_check);
     if(inair_check == false || outair_check == false){
         alert("입/출국 공항을 정확히 입력 하세요");
         return;
