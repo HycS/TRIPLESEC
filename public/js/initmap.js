@@ -517,10 +517,16 @@ function autoSerch(lag, long) {
 function postData() {
     var courseObj = new Object();
     var courseArray = new Array();
+    var tmp_startDate = markers[course[0]].date;
+    var string1 = tmp_startDate.split('-');
+    tmp_startDate = string1[0] + string1[1] + string1[2];
+    var tmp_endDate = markers[course[labelIndex - 1]].date;
+    var string2 = tmp_endDate.split('-');
+    tmp_endDate = string2[0] + string2[1] + string2[2];
 
     courseObj.courseName = "testCourseName";
-    courseObj.startDate = parseInt(markers[course[0]].date);
-    courseObj.endDate = parseInt(markers[course[labelIndex - 1]].date);
+    courseObj.startDate = tmp_startDate;
+    courseObj.endDate = tmp_endDate;
     courseObj.courseType = "custom";
 
 
@@ -546,10 +552,13 @@ function postData() {
         success: function (result) {
             resultID = result.courseID;
             alert(resultID);
+            location.href = "result.html?" + resultID;
         },
         error: function (xhr, status, error) {
             alert(error);
         }
     });
+  
 
 }
+
