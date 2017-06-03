@@ -145,9 +145,7 @@ function addCourse(num) { //추가 버튼 클릭
         var last_date = markers[course[labelIndex - 1]].date;
         var string2 = last_date.split('-');
         last_date = string2[0] + string2[1] + string2[2];
-        alert(last_date);
-        alert(getdate);
-        if (last_date > getdate) {
+       if (last_date > getdate) {
             alert("여행날짜가 잘못 되었습니다.");
             return;
         }
@@ -535,7 +533,7 @@ function postData() {
     }
     courseObj.courseUnit = courseArray;
     // var courseInfo = JSON.stringify(courseObj);
-    alert(courseObj);
+ 
     $.ajax({
         type: "POST",
         url: '/api/v1/course',
