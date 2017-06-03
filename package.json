@@ -1,17 +1,21 @@
 {
 
-  "name": "express-tutorial",
+    "name": "express-tutorial",
 
-  "version": "1.0.0",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "node server.js",
 
-  "dependencies": 
+    },
 
-  {
+    "dependencies":
 
-    "express": "~4.13.1",
+    {
 
-    "ejs": "~2.4.1"    
+        "express": "~4.13.1",
 
-  }
+        "ejs": "~2.4.1"
+
+    }
 
 }
