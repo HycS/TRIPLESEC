@@ -9,7 +9,7 @@ module.exports = function(app)
      app.get('/map.html',function(req,res){
         res.render('map.html');
     });
-     app.get('main.html',function(req,res){
+     app.get('/main.html',function(req,res){
         res.render('main.html');
     });
 }
