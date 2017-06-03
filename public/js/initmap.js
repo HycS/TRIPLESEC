@@ -551,7 +551,6 @@ function postData() {
         data: courseObj,
         success: function (result) {
             resultID = result.courseID;
-            alert(resultID);
             location.href = "result.html?" + resultID;
         },
         error: function (xhr, status, error) {
