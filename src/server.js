@@ -1,14 +1,17 @@
-const express = require('express');
+var express = require('express');
 const bodyparser = require('body-parser');
 const api = require('../src/api.js');
 
-const app = express();
-
+var app = express();
+var viewrouter = require('./viewrouter/main')(app);
 let port = process.env.PORT || 3000;
-
 let router = express.Router();
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 app.use('/api/v1/', router);
+
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({extended: true}));
 
@@ -117,3 +120,4 @@ router.route('/placesList')
             }
         });
     });
+app.use(express.static('public'));
