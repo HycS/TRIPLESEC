@@ -55,7 +55,7 @@ function viewMarker() {
 
     $.ajax({
         type: "GET",
-        url: "http://triplesec.herokuapp.com/api/v1/placesList",
+        url: "https://triplesec.herokuapp.com/api/v1/placesList",
         //data: { latitude : latitude , longitude : longitude },		// 추후 값을 넘겨서 지정 범위내 값만 가져오기 위해 사용(?)
         beforeSend: function () {
             fnRemoveMarker(); // 조회 전 기존 마커 제거
@@ -428,7 +428,7 @@ $(function () {
     $("#auto").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: 'http://triplesec.herokuapp.com/api/v1/placesList',
+                url: 'https://triplesec.herokuapp.com/api/v1/placesList',
                 //data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
                 dataType: "json",
                 success: function (data) {
@@ -538,7 +538,7 @@ function postData() {
     alert(courseObj);
     $.ajax({
         type: "POST",
-        url: 'http://triplesec.herokuapp.com/api/v1/course',
+        url: 'https://triplesec.herokuapp.com/api/v1/course',
         dataType: "json",
         data: courseObj,
         success: function (result) {
