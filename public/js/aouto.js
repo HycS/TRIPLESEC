@@ -7,6 +7,7 @@ $(function() {
 
 			$.ajax({
 
+				url: '/api/v1/placesList',
                 dataType: "json",
 				success: function( data ) {
 					response( $.map( data, function( item ) {
@@ -89,6 +90,7 @@ $(function() {
 
 			$.ajax({
 
+				url: '/api/v1/placesList',
 
 				//data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
 
