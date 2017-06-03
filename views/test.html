@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="menu/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/daterangepicker.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js" type="text/javascript"></script>>
+    <script src="dist/jquery.daterangepicker.min.js"></script>
+    <script src="js/demo.js"></script>
+    <style type="text/css">
+
+
+    </style>
+    <script language="javascript">
+        var inair;
+        var outair;
+        var tmp;
+        $(document).ready(function() {
+            temp = location.href.split("?");
+            data = temp[1].split(":");
+            inair = data[0];
+            outair = data[1];
+            inair = decodeURI(inair);
+            outair = decodeURI(outair);
+
+        });
+
+        function sendFunc() {
+            tmp = document.getElementById('date-range12').value;
+            var dateArray = tmp.split(" to ");
+            location.href = "map.html?" + inair + ":" + outair + ":" + dateArray[0] + ":" + dateArray[1];
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                    <a class="navbar-brand" style="font-size : 30px" href="main.html">Pass Finder<span ></span></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-right">
+                        <li class="pull-right dropdown">
+                            <a href="#menu-toggle" id="menu-toggle" role="button" aria-expanded="true"><i class="material-icons" style="color : gray ;font-size : 40px; ">view_headline</i></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li style="font-size : 18px"><a href="main.html">출/도착지 선택</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">여행 기간 선택</a></li>
+                <li id="accordion">
+                    <li style="font-size : 18px" class="disabled">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                           패스추천<i class="material-icons">arrow_drop_down</i></a>
+                    </li>
+
+                </li>
+                <li style="font-size : 18px" class="disabled"><a href="#">추천 코스</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">패스 검색 결과</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="#">여행 계획 공유</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <br></br>
+            <h1>여행 계획 입력</h1>
+
+            <input type="hidden" id="date-range12">
+            <div id="date-range12-container" style="margin:auto;"></div>
+
+            <div class="row">
+                <hr></hr>
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <p><a href="main.html" class="btn btn-lg btn-primary">이전</a></p>
+                </div>
+                <div class="col-md-3">
+
+                    <p><a class="btn btn-lg btn-primary" onclick="sendFunc()"> 다음 </a></p>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="demo">
+        <input type="hidden" id="date-range12" size="40">
+        <div id="date-range12-container" style="width:1000px;"></div>
+    </div>
+
+</body>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+</script>
+<script src="js/bootstrap.js"></script>
+
+
+</html>
