@@ -10,7 +10,7 @@ module.exports = function(app)
         res.render('map.html');
     });
      app.get('/main.html',function(req,res){
-        res.render('map.html');
+        res.render('main.html');
     });
   
 }
