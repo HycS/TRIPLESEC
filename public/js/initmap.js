@@ -15,7 +15,7 @@ var labelIndex = 0;
 var outline = "f5f5f5";
 var textColor = "000000"
 var infoWindows = [];
-var in_air;
+var in_air, out_air;
 var firstMap;
 var resultID;
 var firstCoor;
@@ -36,6 +36,10 @@ $(document).ready(function () {
     document.getElementById('date-range13-2').value = dateIn;
 
 });
+
+function sendFunc() {
+    location.href = "calendar.html?" + in_air + ":" + out_air;
+}
 
 function initMap() {
     viewMarker();
@@ -145,7 +149,7 @@ function addCourse(num) { //추가 버튼 클릭
         var last_date = markers[course[labelIndex - 1]].date;
         var string2 = last_date.split('-');
         last_date = string2[0] + string2[1] + string2[2];
-       if (last_date > getdate) {
+        if (last_date > getdate) {
             alert("여행날짜가 잘못 되었습니다.");
             return;
         }
@@ -526,14 +530,14 @@ function postData() {
         courseInfo.placeID = parseInt(markers[course[i]].PlaceID);
         var tmp = markers[course[i]].date;
         var string = tmp.split('-');
-        tmp = string[0] + string[1]+ string[2];
+        tmp = string[0] + string[1] + string[2];
         courseInfo.unitDate = parseInt(tmp);
         courseArray.push(courseInfo);
 
     }
     courseObj.courseUnit = courseArray;
     // var courseInfo = JSON.stringify(courseObj);
- 
+
     $.ajax({
         type: "POST",
         url: '/api/v1/course',

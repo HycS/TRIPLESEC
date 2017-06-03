@@ -32,17 +32,6 @@
         }
 
     </style>
-    <style type="text/css">
-        .demo {
-            margin: 30px 0;
-        }
-
-    </style>
-    <script>
-
-
-    </script>
-
     <title>PassFinder</title>
 </head>
 
@@ -75,7 +64,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li style="font-size : 18px"><a href="main.html">출/도착지 선택</a></li>
-                <li style="font-size : 18px"><a href="calendar.html">여행 기간 선택</a></li>
+                <li style="font-size : 18px"><a onclick="sendFunc()">여행 기간 선택</a></li>
                 <li id="accordion">
                     <li style="font-size : 18px">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
@@ -141,11 +130,11 @@
             <div id="map"></div>
             <!--script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script-->
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEwOpJQFHYFjgYZTCekzkduOCCFfbv1CE&callback=initMap"></script>
-        <div class="row">
+            <div class="row">
                 <hr></hr>
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                    <p><a href="calendar.html" class="btn btn-lg btn-primary">이전</a></p>
+                    <p><a class="btn btn-lg btn-primary" onclick="sendFunc()">이전</a></p>
                 </div>
                 <div class="col-md-3">
 
