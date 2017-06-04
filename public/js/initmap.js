@@ -453,7 +453,7 @@ $(function () {
                             }
                         } else if (item.place_name.ja_JP.toLowerCase().indexOf($("#auto").val().toLowerCase()) >= 0) {
                             return {
-                                label: item.place_name.ja_JP.toLowerCase().replace($("auto").val().toLowerCase() + $("#auto").val().toLowerCase()),
+                                label: item.place_name.ja_JP.toLowerCase().replace($("#auto").val().toLowerCase() + $("#auto").val().toLowerCase()),
                                 value: item.place_name.ja_JP,
                                 latval: item.latitude,
                                 longval: item.longitude,

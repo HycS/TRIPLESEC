@@ -60,7 +60,7 @@ $(function () {
 
                             return {
 
-                                label: item.place_name.ja_JP.toLowerCase().replace($("#out_air").val().toLowerCase() + $("#out_air").val().toLowerCase()),
+                                label: item.place_name.ja_JP.toLowerCase().replace($("#in_air").val().toLowerCase() + $("#in_air").val().toLowerCase()),
 
                                 value: item.place_name.ja_JP,
                                 latitude: item.latiude,
