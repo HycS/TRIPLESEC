@@ -96,7 +96,7 @@ function addCourseUnit(courseID, unitIndex, placeID, unitDate, callback) {
 
 function getCourseInfo(courseID, callback) {
   let firstQuery = 'SELECT * FROM course_set WHERE id_course = ?';
-  let secondQuery = 'SELECT * FROM course_unit WHERE id_course = ?';
+  let secondQuery = 'SELECT * FROM course_unit WHERE id_course = ? ORDER BY unit_index';
   let resultJSON = new Object();
   sendSingleQuery( mysql.format(firstQuery, courseID), function (error, result) {
     if (error) {
@@ -243,7 +243,7 @@ function getRecommendPassList(courseID, callback) {
 }
 
 function getVisitPlaceList(courseID, callback) {
-  let firstQuery = mysql.format('SELECT * FROM course_unit WHERE id_course = ?', courseID);
+  let firstQuery = mysql.format('SELECT * FROM course_unit WHERE id_course = ? ORDER BY unit_index', courseID);
   let visitPlaceArray = new Array();
   connectionPool.getConnection(function(error, connection) {
     connection.query(firstQuery, function (error, result) {
