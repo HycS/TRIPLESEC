@@ -5,7 +5,7 @@ describe('server_spec.js', function() {
 
     beforeEach(function() {
         //server.js에 정의한 모듈을 로드한다.
-        server = require('../src/server.js');
+        server = require('server.js');
     });
 
     describe('server.js 로드 관련', function() {
