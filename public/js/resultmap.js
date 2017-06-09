@@ -20,15 +20,200 @@ var firstMap;
 var resultID;
 var firstCoor;
 var dateIn, dateOut;
+var results = [];
+var resultLen;
+var passes = [];
+var courseNum;
+$(document).ready(function () {
+
+    temp = location.href.split("?");
+    courseNum = temp[1];
+    
+});
 
 function initMap() {
+    getCourse();
+    viewMarker();
+
     var mapOptions = {
-        zoom: 4,
+        zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center : new google.maps.LatLng(36, 127),
+        
 
     };
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+   
+}
 
+function getCourse() {
+    $.ajax({
+        type: "GET",
+        url: "http://triplesec.herokuapp.com/api/v1/course/"+courseNum,
+        success: function (json) {
+            var resultList = json;
+            resultLen = resultList.courseUnit.length;
+
+            for (var i = 0; i < resultLen; i++) {
+                var result = new Object();
+                result.unitIndex = resultList.courseUnit[i].unitIndex;
+                result.placeID = resultList.courseUnit[i].placeID;
+                result.unitDate = resultList.courseUnit[i].unitDate;
+                results.push(result);
+            }
+            if(results[0].placeID == results[resultLen-1].placeID){
+                            resultLen--;
+                        }
+        }
+    })
+}
+
+function viewMarker() {
+
+    $.ajax({
+        type: "GET",
+        url: "http://triplesec.herokuapp.com/api/v1/placesList",
+        //data: { latitude : latitude , longitude : longitude },		// 추후 값을 넘겨서 지정 범위내 값만 가져오기 위해 사용(?)
+
+        success: function (json) {
+            var markerList = json;
+            var listLen = markerList.length;
+            var pinColor = "F0F000";
+            for (var i = 0; i < listLen; i++) {
+                for (var k = 0; k < resultLen; k++) {
+                    if (results[k].placeID == markerList[i].id_place) {
+                        if (markerList[i].place_url == null) {
+                            var homepage = "없음";
+                        } else {
+                            var homepage = markerList[i].place_url;
+                        }
+                      
+                        var contentString = '<div>' +
+                            markerList[i].place_name.ko_KR + '<hr></hr>' +
+                            markerList[i].place_description.ko_KR + '<br></br>전화번호 : ' +
+                            markerList[i].phone + '<br>주소 : ' + markerList[i].place_address.ko_KR + '<br>' +
+                            '홈페이지 : ' + homepage + '</div>';
+                        var contentString2 = '';
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(markerList[i].latitude, markerList[i].longitude),
+                            map: map,
+                            PlaceID: markerList[i].id_place,
+                            ko_KR: markerList[i].place_name.ko_KR,
+                            des_ko_KR: markerList[i].place_description.ko_KR,
+                            adr_ko_KR: markerList[i].place_address.ko_KR,
+                            homeurl: homepage,
+                            phone: markerList[i].phone,
+                            icon: getIcon(labelNumber[results[k].unitIndex - 1], pinColor, textColor, outline),
+                            draggable: false,
+                            title: markerList[i].place_name.ko_KR,
+                            delnum: 0,
+                            content: contentString,
+                            content2: contentString2,
+                            type: markerList[i].place_type,
+                            setpath: false,
+                            date: null
+                        });
+
+                        markers.push(marker);
+                      
+                        var infowindow = new google.maps.InfoWindow({
+                            maxWidth: 500
+                        });
+
+                        google.maps.event.addListener(marker, "click", function () {
+                            closeInfowindow();
+                            infowindow.setContent(this.content);
+                            infowindow.open(map, this);
+                            infoWindows[0] = infowindow;
+                        });
+                        if (results[k].unitIndex == 1) {
+                            map.panTo(marker.getPosition());
+
+
+                        }
+                    }
+                }
+            }
+            getOrder();
+            addLine();
+             getPass();
+        }
+    });
+}
+
+function getOrder() {
+
+    for (var i = 0; i < resultLen; i++) {
+
+        for (var k = 0; k < resultLen; k++) {
+
+            if (markers[k].PlaceID == results[i].placeID) {
+                coordinate.push(markers[k].position);
+
+            }
+        }
+    }
+   
+}
+
+function addLine() { //라인그리기
+    
+    addPath = new google.maps.Polyline({
+        path: coordinate,
+        strokeColor: "#ff0000",
+        strokeOpacity: 0.7,
+        strokeWeight: 2
+    });
+
+    //travelPath.push(addPath);
+
+    addPath.setMap(map);
+}
+
+function getIcon(text, fillColor, textColor, outlineColor) {
+    if (!text) text = '•';
+    var iconUrl = "http://chart.googleapis.com/chart?cht=d&chdp=mapsapi&chl=pin%27i\\%27[" + text + "%27-2%27f\\hv%27a\\]h\\]o\\" + fillColor + "%27fC\\" + textColor + "%27tC\\" + outlineColor + "%27eC\\Lauto%27f\\&ext=.png";
+    return iconUrl;
+}
+
+function closeInfowindow() { //창 자동닥기
+    if (infoWindows.length > 0) {
+        infoWindows[0].set(null);
+        infoWindows[0].close();
+        infoWindows.length = 0;
+    }
+}
+function getPass() {
+    $.ajax({
+        type: "GET",
+        url: "http://triplesec.herokuapp.com/api/v1/recommendpass/12",
+        success: function (json) {
+            var passList = json;
+            var passLen = passList.length;
+            for(var i = 0; i<passLen ; i++){
+                var pass = new Object();
+                pass.passName = passList[i].passName.ko_KR;
+                pass.passPrice = passList[i].passPrice;
+                pass.passDescription = passList[i].passDescription.ko_KR;
+                pass.URL = passList[i].passURL;
+                passes.push(pass);
+            }
+            var content;
+            var cost =0;
+            for(var i = 0; i< passLen ; i++){
+                if(i==0){
+                       content = '추천 패스 1<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br>';
+                     
+                }
+                else{
+                    content = content +'•  '+ passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>' +'URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br>';
+                }
+                cost += passes[i].passPrice;
+            }
+            content = content + '총 ' + cost + '엔';
+           
+            $("#area1").html(content);       
+          
+        }
+    })
 }

@@ -32,9 +32,10 @@ router.route('/course')
         console.log("data received");
         console.log(req.body);
         console.log(req.body.courseName);
+
         let isSuccess = true;
 
-        api.addCourseSet(req.body.courseName, parseInt(req.body.startDate, 10), parseInt(req.body.endDate, 10), req.body.courseType, function(err, id) {
+        api.addCourseSet(req.body.courseName, req.body.startDate, req.body.endDate, req.body.courseType, function(err, id) {
             if (err) {
                 isSuccess = false;
             }
@@ -59,14 +60,49 @@ router.route('/course')
         //res.status();
     });
 
-router.route('/course/:courseID')
-
-    .delete(function(req, res) {
-        const id = parseInt(req.params.courseID, 10);
-        if (!id) {
-            return res.status(400).json({error: 'Incorrect ID'});
+router.route('/course/:courseID').delete(function(req, res) {
+        //현재 미구현되어있음
+        return res.status(500).json({error: 'NOT Implemented API'});
+        //const id = parseInt(req.params.courseID, 10);
+        //if (!id) {
+        //    return res.status(400).json({error: 'Incorrect ID'});
+        //}
+});
+router.route('/course/:courseID').get(function(req, res) {
+    const courseID = parseInt(req.params.courseID, 10);
+    api.getCourseInfo(courseID, function(err, result) {
+        if (err) {
+            res.status(404).json({message: "NOT FOUND"});
+        }
+        else {
+            res.status(200).json(result);
         }
     });
+});
+
+router.route('/pass/:passID').get(function(req, res) {
+    const passID = parseInt(req.params.passID, 10);
+    api.getPassInfo(passID, function(err, result) {
+        if (err) {
+            res.status(404).json({message: "NOT FOUND"});
+        }
+        else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+router.route('/recommendpass/:courseID').get(function(req, res) {
+    const courseID = parseInt(req.params.courseID, 10);
+    api.getRecommendPassList(courseID, function(err, result) {
+        if (err) {
+            res.status(404).json({message: "NOT FOUND"});
+        }
+        else {
+            res.status(200).json(result);
+        }
+    });
+});
 
 router.route('/keyword/:keyword')
 
