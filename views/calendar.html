@@ -36,10 +36,15 @@
         function sendFunc() {
             tmp = document.getElementById('date-range12').value;
             var dateArray = tmp.split(" to ");
+            if(dateArray[0]== "" || dateArray[1]==""){
+                alert("날짜를 선택해 주세요");
+                return;
+            }
             location.href = "map.html?" + inair + ":" + outair + ":" + dateArray[0] + ":" + dateArray[1];
         }
 
     </script>
+     
 </head>
 
 <body>

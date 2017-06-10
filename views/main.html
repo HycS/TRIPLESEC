@@ -15,21 +15,8 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
     <script type="text/javascript" src="js/aouto.js"></script>
     <script tpye="text/javascript">
-        function sendFunc() {
-            inair = document.getElementById('in_air').value;
-            outair = document.getElementById('out_air').value;
-            location.href = encodeURI("calendar.html?" + inair + ":" + outair);
-        }
-
+    
     </script>
-     <!--script>
-        $(document).ready(function() {
-
-            $('#menu-toggle').trigger('click');
-
-        });
-
-    </script-->
     <title>PassFinder</title>
 </head>
 
@@ -85,7 +72,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <form name="form1" method="post" action="result.php">
+                    <form name="form1" method="post">
                         <input id="in_air" type="text">
                     </form>
                 </div>
@@ -96,7 +83,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <form name="form1" method="post" action="result.php">
+                    <form name="form1" method="post">
                         <input type="text" id="out_air">
                     </form>
                 </div>

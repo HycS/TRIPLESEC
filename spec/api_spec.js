@@ -85,120 +85,29 @@ describe('api.js', function() {
     //describe 코스 추가 기능 END
     });
 
-/*
+    describe('장소 정보 목록 제공 기능', function() {
 
-    describe('추천 검색어 제공 기능', function() {
-        it("추천 검색어 제공 함수 showRecommendKeyword가 존재한다", function() {
-            expect(typeof api.showRecommendKeyword).toBeDefined();
-            expect(typeof api.showRecommendKeyword).toBe("function");
+        //장소 정보 (전체) 목록 제공 함수 관련 구현 사항
+        it("장소 정보 목록 제공 함수 getPlacesList가 존재한다", function() {
+            expect(typeof api.getPlacesList).toBeDefined();
+            expect(typeof api.getPlacesList).toBe("function");
         });
 
-        describe('검색어 제공 정상 여부 체크', function() {
+        describe('장소 정보 정상 제공 여부 체크', function() {
             let function1;
-            let result1 = 0;
+            let resultList;
             beforeAll(function(done) {
-                function1 = api.showRecommendKeyword("t", function(err, rows) {
-                    result1 = rows;
+                function1 = api.getPlacesList(function(err, result) {
+                    resultList = result;
                     done();
                 });
             });
 
-            it("검색어 t를 입력받아 t가 들어있는 장소의 목록을 return한다", function(done) {
-                expect(result1).toBeDefined();
-                expect(result1).not.toBe(null);
+            it("장소 정보 목록 제공 함수 ", function(done) {
+                expect(resultList).toBeDefined();
+                expect(resultList).not.toBe(null);
                 done();
             });
-
         });
-    //describe 추천 검색어 제공 기능 END
     });
-
-    describe('장소 추가 기능', function() {
-        it("장소 추가 함수 addPlace가 존재한다", function() {
-            expect(typeof api.addPlace).toBeDefined();
-            expect(typeof api.addPlace).toBe("function");
-        });
-
-        describe('코스 정상 추가 여부 체크', function() {
-            let function1;
-            let result1 = 0;
-            beforeAll(function(done) {
-                function1 = api.addPlace("test course1", 20170101, 20170105, "custom", function(err, courseID) {
-                    result1 = placeID;
-                    done();
-                });
-            });
-        });
-    //describe 장소 추가 기능 END
-    });
-//describe api.js END
-*/
 });
-
-
-
-
-
-
-
-/*
-    describe('장소 추가 기능', function() {
-        //장소 추가 함수 createPlace 관련 구현 사항
-        it("장소 추가 함수 createPlace가 존재한다", function() {
-            expect(typeof api.createPlace).toBeDefined();
-            expect(typeof api.createPlace).toBe("function");
-        });
-        it("createPlace는 파라미터를 받아 성공, 실패 여부를 리턴한다.", function() {
-            var result = api.createPlace();
-            expect(result).toBe(true);
-        });
-    });
-*/
-
-/*
-    describe('유사 검색어 키워드 제공 기능', function() {
-        //유사 검색어 키워드 제공 함수 recommendKeywords 관련 구현 사항
-        it("장소 추가 함수 recommendKeywords가 존재한다", function() {
-            expect(typeof api.recommendKeywords).toBeDefined();
-            expect(typeof api.recommendKeywords).toBe("function");
-        });
-        it("recommendKeywords는 글자 'c'를 입력 받아 연관 결과 집합을 리턴한다", function() {
-            expect(api.recommendKeywords("c")).toBeTruthy();
-            expect(api.recommendKeywords("c")).toContain("c");
-        });
-        it("recommendKeywords는 글자 'f'를 입력 받아 연관 결과 집합을 리턴한다", function() {
-            expect(api.recommendKeywords("f")).toBeTruthy();
-            expect(api.recommendKeywords("f")).toContain("f");
-        });
-        it("recommendKeywords는 글자 '시'를 입력 받아 연관 결과 집합을 리턴한다", function() {
-            expect(api.recommendKeywords("시")).toBeTruthy();
-            expect(api.recommendKeywords("시")).toContain("시");
-        });
-        it("recommendKeywords는 글자 't'를 입력 받아 연관 결과 집합을 리턴한다", function() {
-            expect(api.recommendKeywords("t")).toBeTruthy();
-            expect(api.recommendKeywords("t")).toContain("t");
-        });
-        it("recommendKeywords는 글자 '静'를 입력 받아 연관 결과 집합을 리턴한다", function() {
-            expect(api.recommendKeywords("静")).toBeTruthy();
-            expect(api.recommendKeywords("静")).toContain("静");
-        });
-    });
-
-  it("mysql이 null 되어서는 안 된다", function() {
-      expect(typeof index.mysql).not.toBe("null");
-      expect(index).not.toThrowError();
-  })
-  it("mysql connection이 null 되어서는 안 된다", function() {
-      expect(typeof index.connection).not.toBe("null");
-  })
-*/
-/*
-  it('helloWorld 함수가 존재한다', function() {
-    expect(typeof index.helloWorld).not.toBe("undefined"); //존재하지 않는다가 아니어야 한다.
-    expect(typeof index.helloWorld).toBe("function"); //함수여야 한다.
-  });
-
-  it("helloWorld 함수가 호출되면 'Hello World!' 문자가 출력되어야 한다",  function() {
-    expect(index.helloWorld()).toBe("Hello World!");
-  });
-*/

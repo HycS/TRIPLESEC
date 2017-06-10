@@ -15,7 +15,7 @@ var labelIndex = 0;
 var outline = "f5f5f5";
 var textColor = "000000"
 var infoWindows = [];
-var in_air;
+var in_air, out_air;
 var firstMap;
 var resultID;
 var firstCoor;
@@ -37,6 +37,10 @@ $(document).ready(function () {
 
 });
 
+function sendFunc() {
+    location.href = "calendar.html?" + in_air + ":" + out_air;
+}
+
 function initMap() {
     viewMarker();
     var mapOptions = {
@@ -55,7 +59,7 @@ function viewMarker() {
 
     $.ajax({
         type: "GET",
-        url: "http://triplesec.herokuapp.com/api/v1/placesList",
+        url: "/api/v1/placesList",
         //data: { latitude : latitude , longitude : longitude },		// 추후 값을 넘겨서 지정 범위내 값만 가져오기 위해 사용(?)
         beforeSend: function () {
             fnRemoveMarker(); // 조회 전 기존 마커 제거
@@ -145,8 +149,6 @@ function addCourse(num) { //추가 버튼 클릭
         var last_date = markers[course[labelIndex - 1]].date;
         var string2 = last_date.split('-');
         last_date = string2[0] + string2[1] + string2[2];
-        alert(last_date);
-        alert(getdate);
         if (last_date > getdate) {
             alert("여행날짜가 잘못 되었습니다.");
             return;
@@ -356,7 +358,7 @@ function addLine() { //라인그리기
 //마커 색 변경
 function getIcon(text, fillColor, textColor, outlineColor) {
     if (!text) text = '•';
-    var iconUrl = "http://chart.googleapis.com/chart?cht=d&chdp=mapsapi&chl=pin%27i\\%27[" + text + "%27-2%27f\\hv%27a\\]h\\]o\\" + fillColor + "%27fC\\" + textColor + "%27tC\\" + outlineColor + "%27eC\\Lauto%27f\\&ext=.png";
+    var iconUrl = "https://chart.googleapis.com/chart?cht=d&chdp=mapsapi&chl=pin%27i\\%27[" + text + "%27-2%27f\\hv%27a\\]h\\]o\\" + fillColor + "%27fC\\" + textColor + "%27tC\\" + outlineColor + "%27eC\\Lauto%27f\\&ext=.png";
     return iconUrl;
 }
 // 마커 제거 함수\
@@ -428,7 +430,7 @@ $(function () {
     $("#auto").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: 'http://triplesec.herokuapp.com/api/v1/placesList',
+                url: '/api/v1/placesList',
                 //data: { mode : "KEYWORDCITYJSON" , keyword : $("#cityNm").val() },
                 dataType: "json",
                 success: function (data) {
@@ -451,7 +453,7 @@ $(function () {
                             }
                         } else if (item.place_name.ja_JP.toLowerCase().indexOf($("#auto").val().toLowerCase()) >= 0) {
                             return {
-                                label: item.place_name.ja_JP.toLowerCase().replace($("auto").val().toLowerCase() + $("#auto").val().toLowerCase()),
+                                label: item.place_name.ja_JP.toLowerCase().replace($("#auto").val().toLowerCase() + $("#auto").val().toLowerCase()),
                                 value: item.place_name.ja_JP,
                                 latval: item.latitude,
                                 longval: item.longitude,
@@ -515,10 +517,16 @@ function autoSerch(lag, long) {
 function postData() {
     var courseObj = new Object();
     var courseArray = new Array();
+    var tmp_startDate = markers[course[0]].date;
+    var string1 = tmp_startDate.split('-');
+    tmp_startDate = string1[0] + string1[1] + string1[2];
+    var tmp_endDate = markers[course[labelIndex - 1]].date;
+    var string2 = tmp_endDate.split('-');
+    tmp_endDate = string2[0] + string2[1] + string2[2];
 
     courseObj.courseName = "testCourseName";
-    courseObj.startDate = parseInt(markers[course[0]].date);
-    courseObj.endDate = parseInt(markers[course[labelIndex - 1]].date);
+    courseObj.startDate = tmp_startDate;
+    courseObj.endDate = tmp_endDate;
     courseObj.courseType = "custom";
 
 
@@ -528,26 +536,28 @@ function postData() {
         courseInfo.placeID = parseInt(markers[course[i]].PlaceID);
         var tmp = markers[course[i]].date;
         var string = tmp.split('-');
-        tmp = string[0] + string[1]+ string[2];
+        tmp = string[0] + string[1] + string[2];
         courseInfo.unitDate = parseInt(tmp);
         courseArray.push(courseInfo);
 
     }
     courseObj.courseUnit = courseArray;
     // var courseInfo = JSON.stringify(courseObj);
-    alert(courseObj);
+
     $.ajax({
         type: "POST",
-        url: 'http://triplesec.herokuapp.com/api/v1/course',
+        url: '/api/v1/course',
         dataType: "json",
         data: courseObj,
         success: function (result) {
             resultID = result.courseID;
-            alert(resultID);
+            location.href = "result.html?" + resultID;
         },
         error: function (xhr, status, error) {
             alert(error);
         }
     });
+  
 
 }
+
