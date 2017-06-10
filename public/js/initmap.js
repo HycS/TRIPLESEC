@@ -79,7 +79,7 @@ function viewMarker() {
                     markerList[i].place_name.ko_KR + '<hr></hr>' +
                     markerList[i].place_description.ko_KR + '<br></br>전화번호 : ' +
                     markerList[i].phone + '<br>주소 : ' + markerList[i].place_address.ko_KR + '<br>' +
-                    '홈페이지 : ' + homepage + '<br><br><a class="btn btn-primary" onclick="addCourse(' + i + ')"> 추가 </a></div>';
+                    '홈페이지 : <a href ="' + homepage + '" target="_blank">'+homepage+'</a><br><br><a class="btn btn-primary" onclick="addCourse(' + i + ')"> 추가 </a></div>';
                 var contentString2 = '';
                 /*'<div>' +
                 markerList[i].place_name.ko_KR + '<hr></hr>' +
@@ -176,7 +176,7 @@ function addCourse(num) { //추가 버튼 클릭
         markers[num].ko_KR + '<hr></hr>' +
         markers[num].des_ko_KR + '<br></br>전화번호 : ' +
         markers[num].phone + '<br>주소 : ' + markers[num].adr_ko_KR + '<br>' +
-        '홈페이지 : ' + markers[num].homeurl + '<div class="row"><div class="col-md-2"><a class="btn btn-primary" onclick="delCourse(' + num + ')"> 삭제 </a></div><div class="col-md-10" style="text-align:right">여행날짜 : <input id="userdate" type="date" style="width:120px" value="' + markers[num].date + '">&nbsp&nbsp여행순서 : <input style="width:35px" type="number" id="usernumber" name="usernumber" value="' + labelIndex + '" step="1"  min="1" max="' + 100 + '">&nbsp&nbsp<a align ="center" class="btn btn-primary" onclick="changeCourse(' + parseInt(labelNumber[labelIndex - 1]) + ')"> 변경 </a></div>';
+        '홈페이지 : <a href="' + markers[num].homeurl + '" target="_blank">'+markers[num].homeurl +'</a><div class="row"><div class="col-md-2"><a class="btn btn-primary" onclick="delCourse(' + num + ')"> 삭제 </a></div><div class="col-md-10" style="text-align:right">여행날짜 : <input id="userdate" type="date" style="width:120px" value="' + markers[num].date + '">&nbsp&nbsp여행순서 : <input style="width:35px" type="number" id="usernumber" name="usernumber" value="' + labelIndex + '" step="1"  min="1" max="' + 100 + '">&nbsp&nbsp<a align ="center" class="btn btn-primary" onclick="changeCourse(' + parseInt(labelNumber[labelIndex - 1]) + ')"> 변경 </a></div>';
     var infowindow = new google.maps.InfoWindow({
         maxWidth: 500
     }); //정보창 변경
@@ -323,7 +323,7 @@ function reStruct() { //삭제시 번호 순서 재지정
         markers[course[i]].content2 = '<div>' +
             markers[course[i]].ko_KR + '<hr></hr>' +
             markers[course[i]].des_ko_KR + '<br></br>전화번호 : ' +
-            markers[course[i]].phone + '<br>주소 : ' + markers[course[i]].adr_ko_KR + '<br>' + '홈페이지 : ' + markers[course[i]].homeurl + '<div class="row"><div class="col-md-2"><a class="btn btn-primary" onclick="delCourse(' + markers[course[i]].delnum + ')"> 삭제 </a></div><div class="col-md-10" style="text-align:right">여행날짜 : <input id="userdate" type="date" style="width:120px" value="' + markers[course[i]].date + '">&nbsp&nbsp여행순서 : <input style="width:35px" type="number" id="usernumber" name="usernumber" value="' + parseInt(labelNumber[i]) + '" step="1"  min="1" max="' + 100 + '">&nbsp&nbsp<a align ="right" class="btn btn-primary" onclick="changeCourse(' + parseInt(labelNumber[i]) + ')"> 변경 </a></div>';
+            markers[course[i]].phone + '<br>주소 : ' + markers[course[i]].adr_ko_KR + '<br>' + '홈페이지 : <a href="' + markers[course[i]].homeurl + '" target="_blank">'+markers[course[i]].homeurl +'</a><div class="row"><div class="col-md-2"><a class="btn btn-primary" onclick="delCourse(' + markers[course[i]].delnum + ')"> 삭제 </a></div><div class="col-md-10" style="text-align:right">여행날짜 : <input id="userdate" type="date" style="width:120px" value="' + markers[course[i]].date + '">&nbsp&nbsp여행순서 : <input style="width:35px" type="number" id="usernumber" name="usernumber" value="' + parseInt(labelNumber[i]) + '" step="1"  min="1" max="' + 100 + '">&nbsp&nbsp<a align ="right" class="btn btn-primary" onclick="changeCourse(' + parseInt(labelNumber[i]) + ')"> 변경 </a></div>';
         var infowindow = new google.maps.InfoWindow({
             maxWidth: 500
         }); //정보창 변경

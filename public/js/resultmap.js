@@ -88,11 +88,12 @@ function viewMarker() {
                             var homepage = markerList[i].place_url;
                         }
                       
+                       
                         var contentString = '<div>' +
-                            markerList[i].place_name.ko_KR + '<hr></hr>' +
+                            markerList[i].place_name.ko_KR + '<div style="text-align:left">' + results[k].unitDate+ '</div><hr></hr>' +
                             markerList[i].place_description.ko_KR + '<br></br>전화번호 : ' +
                             markerList[i].phone + '<br>주소 : ' + markerList[i].place_address.ko_KR + '<br>' +
-                            '홈페이지 : ' + homepage + '</div>';
+                            '홈페이지 : <a href="' + homepage + '" target="_blank">' + homepage+ '</a></div>';
                         var contentString2 = '';
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(markerList[i].latitude, markerList[i].longitude),
@@ -202,11 +203,11 @@ function getPass() {
             var cost =0;
             for(var i = 0; i< passLen ; i++){
                 if(i==0){
-                       content = '추천 패스 1<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br>';
+                       content = '추천 패스 1<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>URL 주소 : <a href="' + passes[i].URL +'"target="_blank">' + passes[i].URL + '</a><br>';
                      
                 }
                 else{
-                    content = content +'•  '+ passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>' +'URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br>';
+                    content = content +'•  '+ passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>' +'URL 주소 : <a href="' + passes[i].URL +'" target="_blank">' + passes[i].URL + '</a><br>';
                 }
                 cost += passes[i].passPrice;
             }
