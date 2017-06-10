@@ -28,11 +28,11 @@ $(document).ready(function () {
 
     temp = location.href.split("?");
     courseNum = temp[1];
-    
+      getCourse();
 });
 
 function initMap() {
-    getCourse();
+  
     viewMarker();
 
     var mapOptions = {
@@ -72,7 +72,7 @@ function viewMarker() {
 
     $.ajax({
         type: "GET",
-        url: "http://triplesec.herokuapp.com/api/v1/placesList",
+        url: "/api/v1/placesList",
         //data: { latitude : latitude , longitude : longitude },		// 추후 값을 넘겨서 지정 범위내 값만 가져오기 위해 사용(?)
 
         success: function (json) {
@@ -186,7 +186,7 @@ function closeInfowindow() { //창 자동닥기
 function getPass() {
     $.ajax({
         type: "GET",
-        url: "http://triplesec.herokuapp.com/api/v1/recommendpass/12",
+        url: "/api/v1/recommendpass/12",
         success: function (json) {
             var passList = json;
             var passLen = passList.length;
