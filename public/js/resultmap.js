@@ -49,7 +49,7 @@ function initMap() {
 function getCourse() {
     $.ajax({
         type: "GET",
-        url: "http://triplesec.herokuapp.com/api/v1/course/"+courseNum,
+        url: "/api/v1/course/"+courseNum,
         success: function (json) {
             var resultList = json;
             resultLen = resultList.courseUnit.length;
