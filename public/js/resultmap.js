@@ -203,15 +203,15 @@ function getPass() {
             var cost =0;
             for(var i = 0; i< passLen ; i++){
                 if(i==0){
-                       content = '추천 패스 1<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>URL 주소 : <a href="' + passes[i].URL +'"target="_blank">' + passes[i].URL + '</a><br>';
+                       content = '추천 패스 '+labelNumber[i]+'<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br><br>';
                      
                 }
                 else{
-                    content = content +'•  '+ passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>' +'URL 주소 : <a href="' + passes[i].URL +'" target="_blank">' + passes[i].URL + '</a><br>';
+                    content = content +'추천 패스 '+labelNumber[i]+'<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>' +'URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br>';
                 }
                 cost += passes[i].passPrice;
             }
-            content = content + '총 ' + cost + '엔';
+            //content = content + '총 ' + cost + '엔';
            
             $("#area1").html(content);       
           
