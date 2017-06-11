@@ -214,7 +214,7 @@ function getPass() {
             }
             //content = content + '총 ' + cost + '엔';
            
-            $("#area1").html(content);       
+            $("#collapse1").html(content);       
           
         }
     })
