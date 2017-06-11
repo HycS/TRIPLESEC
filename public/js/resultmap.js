@@ -201,14 +201,15 @@ function getPass() {
             }
             var content;
             var cost =0;
-            for(var i = 0; i< passLen ; i++){
-                if(i==0){
-                       content = '추천 패스 '+labelNumber[i]+'<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br><br>';
-                     
+            for (var i = 0; i < passLen; i++) {
+                if (i == 0) {
+                    content = '<div style="color : yellow; width :120%"; class="panel-body" >추천 패스 ' + labelNumber[i] + '<br>•  ' + passes[i].passName + '  : ' + passes[i].passPrice + '엔<br>' + 'URL 주소 : <a href="' + passes[i].URL + '"target="_blank">' + passes[i].URL + '</a><div style="color : yellow; width :120%";  href="#info' + labelNumber[i] + '" data-toggle="collapse">정보<i class="material-icons">arrow_drop_down</i>   <div class="collapse" id="info' + labelNumber[i] + '"><div class="panel-body"style="color : white; width :120%">' + passes[i].passDescription + '</div></div></div></div>';
+
+                } else {
+                    content = content + '<div style="color : yellow; width :120%"; class="panel-body" >추천 패스 ' + labelNumber[i] + '<br>•  ' + passes[i].passName + '  : ' + passes[i].passPrice + '엔<br>' + 'URL 주소 : <a href="' + passes[i].URL + '"target="_blank">' + passes[i].URL + '</a><div style="color : yellow; width :120%";  href="#info' + labelNumber[i] + '" data-toggle="collapse">정보<i class="material-icons">arrow_drop_down</i>   <div class="collapse" id="info' + labelNumber[i] + '"><div class="panel-body"style="color : white; width :120%">' + passes[i].passDescription + '</div></div></div></div>';
+
                 }
-                else{
-                    content = content +'추천 패스 '+labelNumber[i]+'<br>•  ' + passes[i].passName+ '  : '+passes[i].passPrice +'엔<br>' +'URL 주소 : <a href="' + passes[i].URL +'">' + passes[i].URL + '</a><br>';
-                }
+
                 cost += passes[i].passPrice;
             }
             //content = content + '총 ' + cost + '엔';
