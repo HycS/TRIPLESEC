@@ -196,6 +196,7 @@ function getPass() {
                 pass.passName = passList[i].passName.ko_KR;
                 pass.passPrice = passList[i].passPrice;
                 pass.passDescription = passList[i].passDescription.ko_KR;
+                 pass.passDescription = pass.passDescription.replace(/\n/gi, '<br>');
                 pass.URL = passList[i].passURL;
                 passes.push(pass);
             }
