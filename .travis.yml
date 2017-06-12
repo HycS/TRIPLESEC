@@ -5,5 +5,17 @@ cache:
   directories:
   - node_modules
 notifications:
+  email: false
   slack:
     secure: ACaBL17S3vCOEqAGp0aEh+wEFkP/C7H1NkaWU8cOCKsq1PSh8600cGsayFxJGptKa6gL+APSOZIPM1fAsTi36OG2woDhowsUMsFEgwbMYRiIvNNQciUudJdRLmlp2MvvAg+K4EJQ6bGX3qUeDP8kOt5yzudyrO1XZpOuP2OLFJPXLj+pW21gONmJGHWc+oSNzb3LpWJ6Jciyl8n8y/wMyoLioKnQ+8SwL5GAv2wITan7nCKUQ1PFQ9ASuUNWc9mHuYZvIrN6wkLxQRwPyL1e1ok2PGTE0p9M1tJAWrtLUOMFTC3KCbrfBUEfOzaDI7JP6V5h5rzVNHtcZItj+R9CPGyWSJTAFVb4lSmrUngU/TenBbqAbQTYH2JLWBj69T/AeDyNeVOSQha4uBkoLtdRCfOs3xpWZA8Bmigb1uj1z4QwpBHPEiv5XtV/dW1Gqa2zeDWgJeHBHHhpd/OrR8M/MwTnLodaU0NgomMAXa2v/Yu3PaCeoTFPbdULJvs0PcUNtv/TzOLSG0knnEzL0oHebAUtduaIoeyTLaeIcMa/vPgPXygmk/wx1KSnJDrW97AbzDDFVsHuxfBaFeAI3JMyaqW67b17HqNx2kzdt/ZqLMcDzLkdqJzN1vxryYVTmseuAtptlAe7vLrlo/8NGvcgHXUrko3dXPfrRz4Zkc6Vk7U=
+before_install:
+  #설치해야 할 패키지 정보 입력
+  #- sudo apt-get --qq update
+  #- sudo apt-get install -y libxml2-dev  #-y 옵션: 자동 yes
+services:
+  - mysql
+  - redis-server
+before_script:
+  #앱 실행 전 실행되어야 할 스크립트
+env:
+  - secure: q9uWagmiYJmI95EPo1Ke13Qr+4bmCmItLBu//HLKC8maY8mAhgTxgia+9jlUYjNiuZeG54JzbyemiYK1BwFEG3gL8g5WU91mojBuEgKG8E99Rlp0YvNpfx0u7ZCUcDbWQpBuXQrezf4uwitYURiNe5hchKCUKJ73TS7HiBKcrBW4G/CjGLmhDn5BBgGSCLQ0OYO5uOHhwPLVPpihrbxxgV/u9/m1AtmQ5H+1IXBDEehSObk0Z/LmMpckNBzPHkYypCORIOgP5CIi3jOkh8tjsGElOLi/XJ86vdI+I74vMZ597b0v4dUmSTsD+v2Bx4e8kg6nj1ndMDhoE9Ggjf4Zuv3ISWaTKIOYJeyOIYSuHkG+z2zk8+boymoyDuD6QLnV+uD7As/eYY1N2m/f3hI2MQxPRlyW/g1nJ6WaJAg3XkId9OkhglSuh9wcb3Qo8uup8blxq5H8qtwULBi79oDSN2vUUZA3kQiB9vQTFpYiyuOzTMhzVm5rKAZN+bVKb61OXglYYJGYkRtKoVwrjyQRWa11uxG3nWtDPeHW/vf3qkeFIcsbG17wEZfoh58amDN9zsNzPkEU32vFqGy2og2zueeC6jpgLcqrItfa3S61Ic7zK6yMSUSInmtHo0wDDKdP1n8B2n31iMVHuM+oXtqu3Sfw/1uIfRNJtRjGDBZVbm8=

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="menu/css/style.css">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/redmond/jquery-ui.css">
+    <!--자동완성 -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!--자동완성 -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/aouto.js"></script>
+    <script tpye="text/javascript">
+    
+    </script>
+    <title>PassFinder</title>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                    <a class="navbar-brand" style="font-size : 30px" href="main.html">Pass Finder<span ></span></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-right">
+                        <li class="pull-right dropdown">
+                            <a href="#menu-toggle" id="menu-toggle" role="button" aria-expanded="true"><i class="material-icons" style="color : gray ;font-size : 40px; ">view_headline</i></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li style="font-size : 18px" class="disabled"><a href="">출/도착지 선택</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="">여행 기간 선택</a></li>
+                <li id="accordion">
+                    <li style="font-size : 18px" class="disabled">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                           패스추천<i class="material-icons">arrow_drop_down</i></a>
+                    </li>
+
+                </li>
+                <li style="font-size : 18px" class="disabled"><a href="">추천 코스</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="">패스 검색 결과</a></li>
+                <li style="font-size : 18px" class="disabled"><a href="">여행 계획 공유</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1> 입/출국 공항 선택</h1>
+            <hr></hr>
+            <p>입국</p>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form name="form1" method="post">
+                        <input id="in_air" type="text">
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <br></br>
+            <p>출국</p>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form name="form1" method="post">
+                        <input type="text" id="out_air">
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+                <hr></hr>
+
+            </div>
+            <div class="row">
+                <hr></hr>
+                <div class="col-md-4"></div>
+
+                <div class="col-md-4">
+                    <p><a class="btn btn-lg btn-primary" onclick="sendFunc()"> 다음 </a></p>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+</script>
+<!--script src="js/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!--script src ="js/jquery-3.2.1.js"></1script-->
+
+
+</html>
